@@ -1,4 +1,6 @@
+const { response } = require("express");
 const express = require("express");
+const { json } = require("express/lib/response");
 const https = require("https");
 const { url } = require("inspector");
 
@@ -9,6 +11,10 @@ app.get("/", function(req, res) {
     https.get(url, function(response) {
         console.log(response.statusCode);
     });
+    response.on("data", function(data) {
+        const weatherData = JSON.parse(data);
+        console.log(weatherData);
+    })
     res.send("Server is up and running.");
 })
 
