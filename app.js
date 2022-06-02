@@ -8,7 +8,10 @@ const { url } = require("inspector");
 const app = express();
 
 app.get("/", function(req, res) {
-    const url = "https://api.openweathermap.org/data/2.5/weather?q=London&appid=e72ca729af228beabd5d20e3b7749713&units=metric";
+    const query = "London";
+    const apiKey = "e72ca729af228beabd5d20e3b7749713";
+    const units = "metric"
+    const url = "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&appid=" + apiKey + "&units=" + units;
     https.get(url, function(response) {
         console.log(response.statusCode);
     });
