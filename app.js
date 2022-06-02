@@ -1,3 +1,4 @@
+const { query } = require("express");
 const { response } = require("express");
 const express = require("express");
 const { json } = require("express/lib/response");
@@ -17,8 +18,11 @@ app.get("/", function(req, res) {
         console.log(temp)
         const desc = weatherData.weather[0].description;
         console.log(desc);
+        const icon = weatherData.weather[0].icon;
+        const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
         res.write("<p>The weather is currently " + desc + ".</p>");
         res.write("<h1>The temperature in London is " + temp + " degrees Celcius.</h1>");
+        res.write("<img src='" + imageURL + "'></img>");
         res.send();
     })
     res.send("Server is up and running.");
