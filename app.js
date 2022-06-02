@@ -17,7 +17,9 @@ app.get("/", function(req, res) {
         console.log(temp)
         const desc = weatherData.weather[0].description;
         console.log(desc);
-        res.send("<h1>The temperature in London is " + temp + " degrees Celcius.</h1>")
+        res.write("<p>The weather is currently " + desc + ".</p>");
+        res.write("<h1>The temperature in London is " + temp + " degrees Celcius.</h1>");
+        res.send();
     })
     res.send("Server is up and running.");
 })
